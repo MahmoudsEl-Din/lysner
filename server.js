@@ -10,10 +10,10 @@ var io = require('socket.io')(),
     writeToFile = require('./writeToFile.js');
 
 //native NodeJS module for resolving paths
-var path = require('path');
+//var path = require('path');
 
 //get our port # from c9's enviromental variable: PORT
-var port = process.env.PORT;
+//var port = process.env.PORT;
 
 // more custom event setup.
 // this is the CONSTRUCTOR
