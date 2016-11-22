@@ -22,6 +22,7 @@ var PartnerListener = function () {
     };
 };
 var app;
+app.listen(port);
 if (process.env.NODE_ENV !== 'production') {
     // runs on port 8080 when running locally
     app = connect().use(connect.static('public'))
