@@ -1,10 +1,19 @@
-'use strict';
 
+
+'use strict';
+var cool = require('cool-ascii-faces');
+var http = require('http').Server(app);
 var io = require('socket.io')(),
     connect = require('connect'),
     util = require('util'),
     eventEmitter = require('events').EventEmitter,
     writeToFile = require('./writeToFile.js');
+
+//native NodeJS module for resolving paths
+var path = require('path');
+
+//get our port # from c9's enviromental variable: PORT
+var port = process.env.PORT;
 
 // more custom event setup.
 // this is the CONSTRUCTOR
@@ -14,8 +23,19 @@ var PartnerListener = function () {
     };
 };
 var app;
-/*if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     // runs on port 8080 when running locally
+    app = connect().use(connect.static('public'))
+    .use('/', function(req, res, next) {
+            var body = 'Error 404: Page not found.';
+            res.statusCode = 404;
+            res.setHeader('Content-Length', body.length);
+            res.end(body);
+        }
+    ).listen(80);
+}
+else {
+    // runs on port 80 during production
     app = connect().use(connect.static('public'))
     .use('/', function(req, res, next) {
             var body = 'Error 404: Page not found.';
@@ -25,17 +45,6 @@ var app;
         }
     ).listen(8080);
 }
-//else {
-    // runs on port 80 during production
-    app = connect().use(connect.static('public'))
-    .use('/', function(req, res, next) {
-            var body = 'Error 404: Page not found.';
-            res.statusCode = 404;
-            res.setHeader('Content-Length', body.length);
-            res.end(body);
-        }
-    ).listen(80);
-}*/
 
 var chat_room = io.listen(app);
 var statsocket = io.of('/stats');
