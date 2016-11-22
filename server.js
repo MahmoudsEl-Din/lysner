@@ -14,7 +14,7 @@ var PartnerListener = function () {
     };
 };
 var app;
-if (process.env.NODE_ENV !== 'production') {
+/*if (process.env.NODE_ENV !== 'production') {
     // runs on port 8080 when running locally
     app = connect().use(connect.static('public'))
     .use('/', function(req, res, next) {
@@ -24,8 +24,8 @@ if (process.env.NODE_ENV !== 'production') {
             res.end(body);
         }
     ).listen(8080);
-}
-else {
+}*/
+//else {
     // runs on port 80 during production
     app = connect().use(connect.static('public'))
     .use('/', function(req, res, next) {
@@ -35,7 +35,7 @@ else {
             res.end(body);
         }
     ).listen(80);
-}
+//}
 
 var chat_room = io.listen(app);
 var statsocket = io.of('/stats');
