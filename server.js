@@ -1,7 +1,6 @@
 
 
 'use strict';
-var cool = require('cool-ascii-faces');
 var http = require('http').Server(app);
 var io = require('socket.io')(),
     connect = require('connect'),
