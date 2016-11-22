@@ -1,6 +1,6 @@
 'use strict';
 
-var io = require('socket.io')(),
+var io = require('socket.io').listen(80);
     connect = require('connect'),
     util = require('util'),
     eventEmitter = require('events').EventEmitter,
