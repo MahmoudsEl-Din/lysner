@@ -24,7 +24,7 @@ var app;
             res.end(body);
         }
     ).listen(8080);
-}*/
+}
 //else {
     // runs on port 80 during production
     app = connect().use(connect.static('public'))
@@ -35,7 +35,7 @@ var app;
             res.end(body);
         }
     ).listen(80);
-//}
+}*/
 
 var chat_room = io.listen(app);
 var statsocket = io.of('/stats');
