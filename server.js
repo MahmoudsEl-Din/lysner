@@ -1,6 +1,7 @@
 'use strict';
-
-var io = require('socket.io').listen(80);
+var express = require('express');
+var app = express();
+var io = require('socket.io')(),
     connect = require('connect'),
     util = require('util'),
     eventEmitter = require('events').EventEmitter,
@@ -34,7 +35,7 @@ else {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(80);
+    ).listen(8080);
 }
 
 var chat_room = io.listen(app);
@@ -190,3 +191,6 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
+var port = 8080;
+app.listen(port);
+console.log('Express server started on port %s', port);
