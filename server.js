@@ -1,9 +1,13 @@
 'use strict';
+var static = require('node-static');
+var file = new static.Server();
 var express = require('express');
 var app = express();
 var io = require('socket.io')(),
     connect = require('connect'),
     util = require('util'),
+    fs      = require('fs'),
+    app     = express(),
     eventEmitter = require('events').EventEmitter,
     writeToFile = require('./writeToFile.js');
 
@@ -14,6 +18,16 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
+
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+require('http').createServer(function(request, response) {
+  request.addListener('end', function() {
+    file.serve(request, response);
+  }).resume();
+}).listen(process.env.PORT || 8080);
+
 var app;
 if (process.env.NODE_ENV !== 'production') {
     // runs on port 8080 when running locally
@@ -191,6 +205,5 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
-var port = 8080;
-app.listen(port);
-console.log('Express server started on port %s', port);
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
