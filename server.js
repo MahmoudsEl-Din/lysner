@@ -27,6 +27,11 @@ require('http').createServer(function(request, response) {
     file.serve(request, response);
   }).resume();
 }).listen(process.env.PORT || 8080);
+var port = Number(process.env.PORT || 8000);
+
+var express = require('express'); var app = express();
+
+
 
 var app;
 if (process.env.NODE_ENV !== 'production') {
@@ -205,5 +210,7 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
+app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
+
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
