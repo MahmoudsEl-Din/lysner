@@ -22,11 +22,11 @@ var PartnerListener = function () {
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-require('http').createServer(function(request, response) {
+/*require('http').createServer(function(request, response) {
   request.addListener('end', function() {
     file.serve(request, response);
   }).resume();
-}).listen(process.env.PORT || 8080);
+}).listen(process.env.PORT || 8080);*/
 var port = Number(process.env.PORT || 8000);
 
 var express = require('express'); var app = express();
