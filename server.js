@@ -1,6 +1,6 @@
 'use strict';
 //var static = require('node-static');
-var file = new static.Server();
+//var file = new static.Server();
 var express = require('express');
 var app = express();
 var io = require('socket.io')(),
