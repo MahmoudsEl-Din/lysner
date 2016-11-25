@@ -19,10 +19,19 @@ var PartnerListener = function () {
 };
 //var port = Number(process.env.PORT || 8080);
 
-app.get('/public',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
+//app.get('/public',function(req,res){
+//  res.sendFile(path.join(__dirname+'/index.html'));
   //__dirname : It will resolve to your project folder.
+//});
+app.configure(function() {
+    app.use(express.static(__dirname + '/public'));
 });
+app.get('/', function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
+
+// Serve static files
+app.use(express.static('./public'));
 
 
 //var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
