@@ -197,6 +197,6 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
-};
+}).listen(port);
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
