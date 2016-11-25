@@ -4,6 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./ -p ${PORT:=8080} -c-1"
     "start": "node server.js"
   },
   "dependencies": {
@@ -11,6 +12,7 @@
     "express": "^4.14.0",
     "shortid": "2.2.1",
     "socket.io": "1.3.5"
+    "http-server": "*"
   },
     "engine": {
     "node": "*",
