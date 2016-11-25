@@ -1,8 +1,5 @@
 'use strict';
-//var static = require('node-static');
-//var file = new static.Server();
 var express = require('express');
-var app = express.createServer();
 var app = express();
 var io = require('socket.io')(),
     connect = require('connect'),
@@ -20,32 +17,8 @@ var PartnerListener = function () {
     };
 };
 
-
-var port = process.env.PORT || 8080;
-app.listen(port, function () {
-  var addr = app.address();
-  console.log('   app listening on http://' + addr.address + ':' + addr.port);
-});
-
-
-
-/*app.get('*', function(request, response) {
-  response.redirect(process.env.NEW_BASE_URL + request.url)
-});
-
-var port = process.env.PORT || 8080;
-
-
-/*require('http').createServer(function(request, response) {
-  request.addListener('end', function() {
-    file.serve(request, response);
-  }).resume();
-}).listen(process.env.PORT || 8080);
-var port = Number(process.env.PORT || 8000);
-
-var express = require('express'); var app = express();*/
-
-
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 var app;
 if (process.env.NODE_ENV !== 'production') {
@@ -224,10 +197,5 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
-//app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
-
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
