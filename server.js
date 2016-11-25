@@ -23,7 +23,7 @@ var PartnerListener = function () {
 //  res.sendFile(path.join(__dirname+'/index.html'));
   //__dirname : It will resolve to your project folder.
 //});
-app.configure(function() {
+/*app.configure(function() {
     app.use(express.static(__dirname + '/public'));
 });
 app.get('/', function(req, res) {
@@ -31,7 +31,16 @@ app.get('/', function(req, res) {
 });
 
 // Serve static files
-app.use(express.static('./public'));
+app.use(express.static('./public'));*/
+// we are specifying the html directory as another public directory
+app.use(express.static(path.join(__dirname, 'html')));
+// a convenient variable to refer to the HTML directory
+var html_dir = './html/';
+
+// routes to serve the static HTML files
+app.get('/index', function(req, res) {
+    res.sendfile(html_dir + 'index.html');
+});
 
 
 //var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
