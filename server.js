@@ -19,10 +19,13 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
+var app = express.createServer();
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-var express = require('express');
+var port = process.env.PORT || 8080;
+app.listen(port, function () {
+  var addr = app.address();
+  console.log('   app listening on http://' + addr.address + ':' + addr.port);
+});
 
 
 
