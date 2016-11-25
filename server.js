@@ -57,7 +57,7 @@ var chatting = 0;
 
 util.inherits( PartnerListener, eventEmitter );
 
-http.createServer(function (req, res) {
+//http.createServer(function (req, res) {
 chat_room.sockets.on('connection', function (socket) {
     socket.on('identify', function(data) {
         // who are we chatting with
@@ -202,5 +202,5 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
-}).listen(port);
+//}).listen(port);
 app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
