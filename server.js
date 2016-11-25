@@ -38,7 +38,7 @@ if (process.env.NODE_ENV !== 'production') {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(8080);
+    ).listen(3000);
 }
 else {
     // runs on port 80 during production
@@ -49,7 +49,7 @@ else {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(8080);
+    ).listen(3000);
 }
 
 var chat_room = io.listen(app);
