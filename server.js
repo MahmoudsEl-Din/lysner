@@ -1,12 +1,11 @@
 'use strict';
 var express = require('express');
 var app = express();
-var    path    = require("path");
 var io = require('socket.io')(),
     connect = require('connect'),
     util = require('util'),
     fs      = require('fs'),
-    
+    app     = express(),
     eventEmitter = require('events').EventEmitter,
     writeToFile = require('./writeToFile.js');
 
@@ -17,34 +16,9 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
-//var port = Number(process.env.PORT || 8080);
 
-//app.get('/public',function(req,res){
-//  res.sendFile(path.join(__dirname+'/index.html'));
-  //__dirname : It will resolve to your project folder.
-//});
-/*app.configure(function() {
-    app.use(express.static(__dirname + '/public'));
-});
-app.get('/', function(req, res) {
-  res.sendfile(__dirname + '/public/index.html');
-});
-
-// Serve static files
-app.use(express.static('./public'));*/
-// we are specifying the html directory as another public directory
-/*app.use(express.static(path.join(__dirname, 'html')));
-// a convenient variable to refer to the HTML directory
-var html_dir = './html/';
-
-// routes to serve the static HTML files
-app.get('/index', function(req, res) {
-    res.sendfile(html_dir + 'index.html');
-});*/
-app.use(express.static('public'))
-
-//var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
-//    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 var app;
 if (process.env.NODE_ENV !== 'production') {
@@ -56,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(3000);
+    ).listen(8080);
 }
 else {
     // runs on port 80 during production
@@ -67,7 +41,7 @@ else {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(3000);
+    ).listen(8080);
 }
 
 var chat_room = io.listen(app);
@@ -78,7 +52,7 @@ var chatting = 0;
 
 util.inherits( PartnerListener, eventEmitter );
 
-//http.createServer(function (req, res) {
+
 chat_room.sockets.on('connection', function (socket) {
     socket.on('identify', function(data) {
         // who are we chatting with
@@ -223,8 +197,5 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
-//}).listen(port);
-app.listen(3000);
-console.log("Running at Port 3000");
-
-//app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
+app.listen(port, ip);
+console.log('Server running on http://%s:%s', ip, port);
