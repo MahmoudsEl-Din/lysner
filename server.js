@@ -16,9 +16,14 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
+var port = Number(process.env.PORT || 8000);
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var express = require('express'); var app = express();
+
+
+
+//var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
+//    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 var app;
 if (process.env.NODE_ENV !== 'production') {
@@ -198,5 +203,4 @@ chat_room.sockets.on('connection', function (socket) {
     }); 
 });
 }).listen(port);
-app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
+app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
