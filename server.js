@@ -2,7 +2,7 @@
 //var static = require('node-static');
 //var file = new static.Server();
 var express = require('express');
-var app = express.createServer(express.logger());
+var app = express.createServer();
 var app = express();
 var io = require('socket.io')(),
     connect = require('connect'),
@@ -19,7 +19,7 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
-var app = express.createServer();
+
 
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
