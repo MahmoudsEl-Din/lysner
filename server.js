@@ -16,7 +16,7 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
-var port = Number(process.env.PORT || 8000);
+var port = Number(process.env.PORT || 8080);
 
 var express = require('express'); var app = express();
 
@@ -35,7 +35,7 @@ if (process.env.NODE_ENV !== 'production') {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(80);
+    ).listen(8080);
 }
 else {
     // runs on port 80 during production
@@ -46,7 +46,7 @@ else {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(80);
+    ).listen(8080);
 }
 
 var chat_room = io.listen(app);
