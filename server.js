@@ -1,11 +1,12 @@
 'use strict';
 var express = require('express');
 var app = express();
+var    path    = require("path");
 var io = require('socket.io')(),
     connect = require('connect'),
     util = require('util'),
     fs      = require('fs'),
-    app     = express(),
+    
     eventEmitter = require('events').EventEmitter,
     writeToFile = require('./writeToFile.js');
 
@@ -16,8 +17,12 @@ var PartnerListener = function () {
         this.emit('wakeUp', partnerSocket );
     };
 };
-var port = Number(process.env.PORT || 8080);
+//var port = Number(process.env.PORT || 8080);
 
+app.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/index.html'));
+  //__dirname : It will resolve to your project folder.
+});
 
 
 //var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
@@ -201,4 +206,7 @@ chat_room.sockets.on('connection', function (socket) {
     }); 
 });
 //}).listen(port);
-app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
+app.listen(3000);
+console.log("Running at Port 3000");
+
+//app.use(express.static(__dirname + '/public')); var server = app.listen(port, function() { console.log('Listening on port %d', server.address().port); });
