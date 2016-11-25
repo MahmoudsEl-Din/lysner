@@ -52,7 +52,7 @@ var chatting = 0;
 
 util.inherits( PartnerListener, eventEmitter );
 
-
+http.createServer(function (req, res) {
 chat_room.sockets.on('connection', function (socket) {
     socket.on('identify', function(data) {
         // who are we chatting with
@@ -197,5 +197,6 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
+};
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
