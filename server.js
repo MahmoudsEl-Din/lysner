@@ -17,7 +17,7 @@ var PartnerListener = function () {
     };
 };
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 var app;
@@ -30,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(8080);
+    ).listen(80);
 }
 else {
     // runs on port 80 during production
@@ -41,7 +41,7 @@ else {
             res.setHeader('Content-Length', body.length);
             res.end(body);
         }
-    ).listen(8080);
+    ).listen(80);
 }
 
 var chat_room = io.listen(app);
