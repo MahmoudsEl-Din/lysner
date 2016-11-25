@@ -18,8 +18,6 @@ var PartnerListener = function () {
 };
 var port = Number(process.env.PORT || 8080);
 
-var express = require('express'); var app = express();
-
 
 
 //var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80,
