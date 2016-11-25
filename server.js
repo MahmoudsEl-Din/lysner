@@ -29,7 +29,7 @@ app.listen(port, function () {
 
 
 
-app.get('*', function(request, response) {
+/*app.get('*', function(request, response) {
   response.redirect(process.env.NEW_BASE_URL + request.url)
 });
 
@@ -40,10 +40,10 @@ var port = process.env.PORT || 8080;
   request.addListener('end', function() {
     file.serve(request, response);
   }).resume();
-}).listen(process.env.PORT || 8080);*/
+}).listen(process.env.PORT || 8080);
 var port = Number(process.env.PORT || 8000);
 
-var express = require('express'); var app = express();
+var express = require('express'); var app = express();*/
 
 
 
