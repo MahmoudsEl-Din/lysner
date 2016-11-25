@@ -19,8 +19,8 @@ var PartnerListener = function () {
 };
 //var port = Number(process.env.PORT || 8080);
 
-app.get('/',function(req,res){
-  res.sendFile(path.join(public+'/index.html'));
+app.get('/public',function(req,res){
+  res.sendFile(path.join(__dirname+'/index.html'));
   //__dirname : It will resolve to your project folder.
 });
 
