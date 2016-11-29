@@ -20,7 +20,7 @@ var PartnerListener = function () {
 var port = process.env.PORT || 23605,
     ip   = process.env.IP   || '0.0.0.0';
 
-var app;
+/*var app;
 if (process.env.NODE_ENV !== 'production') {
     // runs on port 8080 when running locally
     app = connect().use(connect.static('public'))
@@ -42,7 +42,7 @@ else {
             res.end(body);
         }
     ).listen(23605);
-}
+}*/
 
 var chat_room = io.listen(app);
 var statsocket = io.of('/stats');
