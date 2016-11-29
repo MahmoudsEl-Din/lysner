@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+var http = require('http');
 var app = express();
 var io = require('socket.io')(),
     connect = require('connect'),
@@ -197,5 +198,7 @@ chat_room.sockets.on('connection', function (socket) {
         }
     }); 
 });
+var server = http.createServer(requestListener);
+server.listen(23605);
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
