@@ -10,4 +10,4 @@ First, install all the node modules using `npm install`. Then use `node server.j
 
 # License
 
-Copyright (c) 2015 Arun Mahadevan. This piece of software is licensed under the MIT License.
+Copyright (c) 2015. This piece of software is licensed under the MIT License.
