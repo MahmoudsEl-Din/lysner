@@ -17,7 +17,7 @@ var PartnerListener = function () {
     };
 };
 
-var port = process.env.PORT || 23605,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 23605,    
     ip   = process.env.IP   || '0.0.0.0';
 
 var app;
